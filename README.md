@@ -40,11 +40,10 @@
 1. The video shows a case study of containerization in DevOps. The concept of Docker containerization is used extensively in the cloud world. Watch the video to familiarize yourself with [Docker](https://youtu.be/rOTqprHv1YE) terminologies. 
 2. We will use Kubernetes (**K8s**) to manage Docker images and applications. The following video covers [Kubernetes and its components](https://youtu.be/cC46cg5FFAM).
 3. Kubernetes will be used to deploy both The MySQL and Redis servers. Watch the first **7:45 minutes** in the following video to get familiar with [Redis commands](https://youtu.be/jgpVdJB2sKQ).
-4. ~~Kafka has an existing tool to automatically store into data storage the data published into a topic. This tool is called Kafka Connect. Watch the following video for more information about [Kafka Connect](https://www.youtube.com/watch?v=Lmus2AFX-oc).~~
-5. We will create a similar tool within GCP in this lab. However, we will focus on the sink connectors, It's possible to create a source connector as well.
+4. We will create a similar tool within GCP in this lab. However, we will focus on the sink connectors, It's possible to create a source connector as well.
 
 ## Setting Up Google Kubernetes Engine
-To set up Google Kubernetes Engine (**GKE**), open the console of the project you have created within the Google Cloud Platform (GCP) during the first milestone.
+To set up Google Kubernetes Engine (**GKE**), open the console of the project you have created within the Google Cloud Platform (GCP) during the first milestone. We will keep using the console for all the commands we will be running.
 1. Set the default compute zone to **northamerica-northeast1-b**
    
    ```cmd
@@ -58,12 +57,21 @@ To set up Google Kubernetes Engine (**GKE**), open the console of the project yo
 3. Wait until the API is enabled. Then, create a three-node cluster on GKE called **sofe4630u**. A Node is a worker machine in which docker images and applications can be deployed.
    
    ```cmd
-   gcloud container clusters create sofe4630u --num-nodes=3 
+   gcloud container clusters create sofe4630u   --num-nodes=3  --machine-type=e2-small   --disk-size=20 --zone=us-central1-a 
    ```
       
    **Note**: if the authorization windows pop up, click Authorize
    
-   **Note**: if you get an error that there are no available resources to create the nodes, you may need to change the default compute zone (e.g., to **us-central1-a**) or reduce the number of nodes.
+   **Note**:
+   ```cmd
+   --machine-type=e2-small
+   ```
+  Creates each Kubernetes node as a small, low-cost VM type on GCP (2 vCPUs, 2 GB RAM), which is enough for this lab while keeping resource usage and cost down.
+  ```cmd
+  --disk-size=20
+  ```
+  Sets the size of the boot disk for each node to 20 GB. This is per node (so 3 nodes = three 20 GB disks)
+
 
 ## Deploy MySQL using GKE:
 1. We will use a YAML file to deploy a pre-created MySQL image over the GKE cluster. A YAML file contains the configuration used to set the deployment. The deployment's role is to orchestrate docker applications.
