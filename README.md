@@ -57,7 +57,7 @@ To set up Google Kubernetes Engine (**GKE**), open the console of the project yo
 3. Wait until the API is enabled. Then, create a three-node cluster on GKE called **sofe4630u**. A Node is a worker machine in which docker images and applications can be deployed.
    
    ```cmd
-   gcloud container clusters create sofe4630u   --num-nodes=3  --machine-type=e2-small   --disk-size=20 --zone=us-central1-a 
+   gcloud container clusters create sofe4630u   --num-nodes=3  --machine-type=e2-small   --disk-size=20 --zone=northamerica-northeast2-a 
    ```
       
    **Note**: if the authorization windows pop up, click Authorize
