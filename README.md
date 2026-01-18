@@ -550,22 +550,17 @@ kubectl delete -f redis.yaml
 * What's the applications of the connectors?
 
 ## Design
-In the previous milestone, you have sent the smart meter readings to Google Pub/Sub. It's needed to add a Dataflow job to preprocess the smart meter measurements. The job consists of the following stages
-1. **Read from PubSub**: read the measurement reading .
-2. **Filter**: Eliminate records with missing measurements (containing None). 
-3. **Convert**:  convert  the  pressure  from  kPa  to  psi  and  the  temperature  from  Celsius  to  Fahrenheit using the following equations 
-    
-    𝑃(𝑝𝑠𝑖) = 𝑃(𝑘𝑃𝑎)/6.895
-    
-    𝑇(𝐹) = 𝑇(𝐶)∗1.8+32
-4. **Write to PubSub**: send the measurement back to another topic
+
+In the previous milestone, you designed a producer-consumer system. This time, you are tasked with adding a storing stage in the middle of that system. You will add a stage in the middel where the data sent from the producer is stored either using MySql or Redis as we went over this milestone. It is accepted to save the data on google cloud using another method , but you have to show your justification.
  
 
 # Deliverables
-1. A report that includes the Discussion part and description of the updated pipeline.
-2. The code you implemented in the Design part.
-2. An audible video of about 5 minutes showing the connectors described. Your video should highlight the check steps.
-3. Another audible video of about 3 minutes shows the output of the design part.
+## Deliverables
+A report that includes the following:
+1. A GitHub link to the scripts used in the Design part.
+2. the discussion and the design parts.
+3. A Link to an audible video of about 3 minutes showing the connectors described. Your video should highlight the check steps.
+4. A Link to another audible video of about 5 minutes showing the design part. 
 
 
 ## Acknowledgements
